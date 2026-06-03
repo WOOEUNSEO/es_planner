@@ -72,19 +72,19 @@ textarea {
   0% {
     opacity: 0;
     transform: scale(0.96);
-    filter: brightness(0.45) drop-shadow(0 12px 18px rgba(82,54,24,0.08));
+    filter: brightness(0.45) drop-shadow(0 12px 18px rgba(70,60,50,0.08));
   }
 
   35% {
     opacity: 1;
     transform: scale(1);
-    filter: brightness(1.35) drop-shadow(0 20px 32px rgba(82,54,24,0.18));
+    filter: brightness(1.28) drop-shadow(0 20px 32px rgba(70,60,50,0.14));
   }
 
   100% {
     opacity: 1;
     transform: scale(1);
-    filter: brightness(1) drop-shadow(0 20px 32px rgba(82,54,24,0.14));
+    filter: brightness(1) drop-shadow(0 20px 32px rgba(70,60,50,0.12));
   }
 }
 
@@ -95,12 +95,12 @@ textarea {
   }
 
   45% {
-    opacity: 0.18;
+    opacity: 0.16;
     transform: scale(1.08);
   }
 
   100% {
-    opacity: 0.12;
+    opacity: 0.1;
     transform: scale(1);
   }
 }
@@ -153,7 +153,7 @@ textarea {
 
 .mini-logo:hover {
   transform: rotate(-8deg) scale(1.05);
-  box-shadow: 0 16px 32px rgba(82, 54, 24, 0.16);
+  box-shadow: 0 16px 32px rgba(70, 60, 50, 0.14);
 }
 
 .brand h1 {
@@ -177,7 +177,7 @@ textarea {
 .month-control button {
   border: none;
   background: var(--accent);
-  color: #5f4528;
+  color: #2f2a24;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -196,6 +196,7 @@ textarea {
   text-align: center;
   font-weight: 800;
   font-size: 20px;
+  color: #2f2a24;
 }
 
 .calendar-view {
@@ -230,30 +231,32 @@ textarea {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  color: #111111;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .day:hover {
   transform: translateY(-4px);
   border-color: var(--accent-dark);
-  box-shadow: 0 18px 45px rgba(82, 54, 24, 0.1);
+  box-shadow: 0 18px 45px rgba(70, 60, 50, 0.08);
 }
 
 .day.empty {
   cursor: default;
-  background: rgba(255, 255, 255, 0.32);
-  border: 1px dashed #eadcc7;
+  background: rgba(255, 253, 249, 0.34);
+  border: 1px dashed #e3d8ca;
 }
 
 .day.empty:hover {
   transform: none;
   box-shadow: none;
-  border-color: #eadcc7;
+  border-color: #e3d8ca;
 }
 
 .day-number {
   font-weight: 800;
   font-size: 18px;
+  color: #111111;
 }
 
 .today {
@@ -327,6 +330,7 @@ textarea {
   font-size: 28px;
   font-weight: 900;
   letter-spacing: -0.05em;
+  color: #2f2a24;
 }
 
 .input-row {
@@ -370,6 +374,7 @@ textarea {
   border-radius: 16px;
   padding: 12px 14px;
 }
+
 .todo-list-wrap {
   max-height: 430px;
   overflow-y: auto;
@@ -394,6 +399,7 @@ textarea {
   animation: itemIn 0.25s ease both;
   transition: transform 0.24s ease, opacity 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
   user-select: none;
+  touch-action: none;
 }
 
 .todo-item.dragging {
@@ -401,24 +407,17 @@ textarea {
   transform: scale(0.98);
 }
 
-.todo-item.drag-over {
-  border-color: var(--accent-dark);
-  box-shadow: 0 14px 35px rgba(82, 54, 24, 0.12);
-  transform: translateY(-3px);
-}
-.todo-item {
-  touch-action: none;
-}
-
 .todo-item.touch-dragging {
-  opacity: 0.75;
+  opacity: 0.78;
   transform: scale(1.02);
   box-shadow: 0 18px 40px rgba(70, 60, 50, 0.16);
   z-index: 20;
 }
 
-.drag-handle {
-  touch-action: none;
+.todo-item.drag-over {
+  border-color: var(--accent-dark);
+  box-shadow: 0 14px 35px rgba(70, 60, 50, 0.14);
+  transform: translateY(-3px);
 }
 
 .drag-handle {
@@ -426,9 +425,10 @@ textarea {
   height: 34px;
   border: none;
   background: transparent;
-  color: #c1a17a;
+  color: #b6aa9d;
   font-size: 20px;
   cursor: grab;
+  touch-action: none;
 }
 
 .check {
@@ -466,7 +466,7 @@ textarea {
 .delete-btn {
   border: none;
   background: transparent;
-  color: #c1a17a;
+  color: #b6aa9d;
   font-size: 20px;
   cursor: pointer;
 }
@@ -479,6 +479,7 @@ textarea {
   border-radius: 24px;
   background: #fffdf9;
 }
+
 .check-spark {
   position: fixed;
   width: var(--size);
@@ -631,7 +632,24 @@ textarea {
   animation: secretFade 0.55s ease both;
 }
 
+.secret-world::before,
+.secret-world::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.45s ease;
+}
+
 .secret-world.lights-off {
+  background: linear-gradient(180deg, #0b2242 0%, #071426 100%);
+  color: #dceeff;
+}
+
+.secret-world.lights-off::before {
+  opacity: 1;
   background:
     radial-gradient(circle at 8% 12%, rgba(255,255,255,0.95) 0 0.7px, transparent 1.6px),
     radial-gradient(circle at 18% 24%, rgba(210,235,255,0.8) 0 0.6px, transparent 1.5px),
@@ -647,26 +665,38 @@ textarea {
     radial-gradient(circle at 28% 78%, rgba(205,230,255,0.78) 0 0.6px, transparent 1.5px),
     radial-gradient(circle at 48% 66%, rgba(255,255,255,0.95) 0 0.9px, transparent 1.9px),
     radial-gradient(circle at 67% 76%, rgba(255,255,255,0.76) 0 0.6px, transparent 1.5px),
-    radial-gradient(circle at 82% 58%, rgba(220,240,255,0.9) 0 0.8px, transparent 1.7px),
+    radial-gradient(circle at 82% 58%, rgba(220,240,255,0.9) 0 0.8px, transparent 1.7px);
+  animation: starTwinkleA 3.8s ease-in-out infinite alternate;
+}
+
+.secret-world.lights-off::after {
+  opacity: 1;
+  background:
     radial-gradient(circle at 11% 42%, rgba(255,255,255,0.65) 0 0.45px, transparent 1.3px),
     radial-gradient(circle at 22% 54%, rgba(210,235,255,0.72) 0 0.5px, transparent 1.4px),
     radial-gradient(circle at 39% 49%, rgba(255,255,255,0.6) 0 0.45px, transparent 1.3px),
     radial-gradient(circle at 57% 46%, rgba(230,245,255,0.74) 0 0.5px, transparent 1.4px),
     radial-gradient(circle at 74% 44%, rgba(255,255,255,0.62) 0 0.45px, transparent 1.3px),
     radial-gradient(circle at 89% 72%, rgba(210,235,255,0.7) 0 0.5px, transparent 1.4px),
-    linear-gradient(180deg, #0b2242 0%, #071426 100%);
-  color: #dceeff;
-  animation: subtleStarGlow 3.8s ease-in-out infinite alternate;
+    radial-gradient(circle at 6% 76%, rgba(255,255,255,0.7) 0 0.45px, transparent 1.3px),
+    radial-gradient(circle at 33% 88%, rgba(220,240,255,0.78) 0 0.5px, transparent 1.4px),
+    radial-gradient(circle at 71% 84%, rgba(255,255,255,0.66) 0 0.45px, transparent 1.3px);
+  animation: starTwinkleB 5s ease-in-out infinite alternate;
 }
 
-@keyframes subtleStarGlow {
-  from {
-    filter: brightness(0.92);
-  }
+.secret-world > * {
+  position: relative;
+  z-index: 1;
+}
 
-  to {
-    filter: brightness(1.18);
-  }
+@keyframes starTwinkleA {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
+}
+
+@keyframes starTwinkleB {
+  from { opacity: 0.35; }
+  to { opacity: 0.78; }
 }
 
 .secret-toolbar {
