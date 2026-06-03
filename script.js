@@ -315,6 +315,8 @@ function startTouchReorder(event, index) {
   touchDragElement = event.currentTarget.closest(".todo-item");
   touchStartY = event.clientY;
 
+  if (!touchDragElement) return;
+
   touchDragElement.classList.add("touch-dragging");
   touchDragElement.setPointerCapture(event.pointerId);
 
@@ -342,7 +344,9 @@ function moveTouchReorder(event) {
     return currentY > rect.top && currentY < rect.bottom;
   });
 
-  todoItems.forEach(item => item.classList.remove("drag-over"));
+  todoItems.forEach(item => {
+    item.classList.remove("drag-over");
+  });
 
   if (target) {
     target.classList.add("drag-over");
